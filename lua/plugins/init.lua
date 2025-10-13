@@ -108,7 +108,6 @@ require("lazy").setup({
   opts = {
     -- add any custom options here
   }},
-  {'willothy/wezterm.nvim',config = true},
   'monaqa/dial.nvim',
   'ggandor/leap.nvim',
   'ggandor/leap-ast.nvim',
@@ -149,8 +148,6 @@ require("lazy").setup({
 },
   'kdheepak/lazygit.nvim',
   'echasnovski/mini.nvim',
-  {"simrat39/symbols-outline.nvim", config = function() require("symbols-outline").setup() end, enabled = not vscode },
-  'glepnir/dashboard-nvim',
   {'lukas-reineke/indent-blankline.nvim', main = "ibl"},
   {'akinsho/toggleterm.nvim', branch = 'main', config = function() require('toggleterm-config') end, enabled = not vscode },
   {'numToStr/Comment.nvim', config = function() require('Comment') end, enabled = not vscode },

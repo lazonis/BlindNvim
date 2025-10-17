@@ -228,10 +228,6 @@ require("lazy").setup({
   },
   {
     'robitx/gp.nvim',
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-    },
     config = function()
       require('mcphub-config')
     end,

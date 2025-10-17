@@ -170,7 +170,6 @@ require("lazy").setup({
   'romgrk/nvim-treesitter-context',
   'nvim-treesitter/nvim-treesitter-textobjects',
   'RRethy/nvim-treesitter-textsubjects',
-  'github/copilot.vim',
   {
     'yetone/avante.nvim',
     event = "VeryLazy",

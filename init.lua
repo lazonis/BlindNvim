@@ -24,6 +24,7 @@ require('nvim-lint-config')
 require('devcontainer-config')
 require('noice-config')
 require('fasterbigfile-config')
+require('render-markdown-config')
 require('aerial')
 vim.cmd[[colorscheme tokyonight-night]]
 end

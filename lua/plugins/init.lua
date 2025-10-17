@@ -170,7 +170,67 @@ require("lazy").setup({
   'romgrk/nvim-treesitter-context',
   'nvim-treesitter/nvim-treesitter-textobjects',
   'RRethy/nvim-treesitter-textsubjects',
-  'github/copilot.vim',
+  {
+    'yetone/avante.nvim',
+    event = "VeryLazy",
+    lazy = false,
+    version = false,
+    opts = {},
+    build = "make",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "zbirenbaum/copilot.lua",
+      {
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = { "zbirenbaum/copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
+  {
+    'robitx/gp.nvim',
+    config = function()
+      require('mcphub-config')
+    end,
+  },
   'eandrju/cellular-automaton.nvim',
   {'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp'},
 --  { 'codota/tabnine-nvim', build = "./dl_binaries.sh", enabled = not vscode },

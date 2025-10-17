@@ -319,6 +319,19 @@ wk.add({
   { "<space>zz", ":ZenMode<cr>", desc = "Toggle Zen Mode" },
   { "<space>zt", ":Twilight<cr>", desc = "Toggle Twilight" },
   
+  -- DevContainer
+  { "<space>D", group = "DevContainer" },
+  { "<space>Da", "<cmd>DevcontainerAttach<cr>", desc = "Attach to Container" },
+  { "<space>Db", "<cmd>DevcontainerBuild<cr>", desc = "Build Container" },
+  { "<space>Dc", "<cmd>DevcontainerConnect<cr>", desc = "Connect to Container" },
+  { "<space>De", "<cmd>DevcontainerExec<cr>", desc = "Execute in Container" },
+  { "<space>Dl", "<cmd>DevcontainerLogs<cr>", desc = "Show Container Logs" },
+  { "<space>Do", "<cmd>DevcontainerOpen<cr>", desc = "Open Container Config" },
+  { "<space>Dr", "<cmd>DevcontainerRemove<cr>", desc = "Remove Container" },
+  { "<space>Ds", "<cmd>DevcontainerStart<cr>", desc = "Start Container" },
+  { "<space>DS", "<cmd>DevcontainerStop<cr>", desc = "Stop Container" },
+  { "<space>Dt", "<cmd>DevcontainerToggle<cr>", desc = "Toggle Container Terminal" },
+  
   -- Visual mode mappings
   { "<space>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment toggle linewise (visual)", mode = "v" },
   

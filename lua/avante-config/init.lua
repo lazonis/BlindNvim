@@ -19,6 +19,7 @@ require('avante').setup({
     support_paste_from_clipboard = false,
   },
   mappings = {
+    --- @class AvanteConflictMappings
     diff = {
       ours = "co",
       theirs = "ct",

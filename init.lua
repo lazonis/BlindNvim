@@ -26,6 +26,8 @@ require('noice-config')
 require('fasterbigfile-config')
 require('render-markdown-config')
 require('aerial')
+require('avante-config')
+require('mcphub-config')
 vim.cmd[[colorscheme tokyonight-night]]
 end
 require('dial-config')

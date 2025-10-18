@@ -5,7 +5,7 @@ require('copilot').setup({
     keymap = {
       jump_prev = "[[",
       jump_next = "]]",
-      accept = "<CR>",
+      accept = "<C-CR>",
       refresh = "gr",
     },
     layout = {
@@ -20,12 +20,12 @@ require('copilot').setup({
     debounce = 75,
     trigger_on_accept = true,
     keymap = {
-      accept = "<C-x>",
+      accept = "<CR>",
       accept_word = false,
       accept_line = false,
-      next = "<M-]>",
-      prev = "<M-[>",
-      dismiss = "<C-]>",
+      next = "<M-n>",
+      prev = "<M-p>",
+      dismiss = "<C-c>",
     },
   },
   nes = {
@@ -55,12 +55,12 @@ require('copilot').setup({
   end,
   should_attach = function(_, _)
     if not vim.bo.buflisted then
-      logger.debug("not attaching, buffer is not 'buflisted'")
+      print("not attaching, buffer is not 'buflisted'")
       return false
     end
 
     if vim.bo.buftype ~= "" then
-      logger.debug("not attaching, buffer 'buftype' is " .. vim.bo.buftype)
+      print("not attaching, buffer 'buftype' is " .. vim.bo.buftype)
       return false
     end
 

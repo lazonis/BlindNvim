@@ -115,14 +115,21 @@ require("lazy").setup({
   'cwebster2/github-coauthors.nvim',
   { 'wet-sandwich/hyper.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
   {
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  -- opts = {},
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
-    }
-},
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require("snacks").setup({
+        input = { enabled = true },
+        bigfile = { enabled = false },
+        notifier = { enabled = true },
+        quickfile = { enabled = false },
+        statuscolumn = { enabled = false },
+        words = { enabled = false },
+      })
+    end,
+  },
+  
   {"epwalsh/obsidian.nvim", version = "*",  lazy = true, ft = "markdown",dependencies = {"nvim-lua/plenary.nvim"},},
   {"MeanderingProgrammer/render-markdown.nvim", dependencies = {"nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons"}, ft = "markdown"},
   'hrsh7th/cmp-buffer',
@@ -156,8 +163,6 @@ require("lazy").setup({
   {'glepnir/lspsaga.nvim', branch = "main" },
   {'folke/zen-mode.nvim', config = function() require("zen-mode-config") end, enabled = not vscode },
   {'folke/twilight.nvim', config = function() require("twilight-config") end, enabled = not vscode },
---  {'beauwilliams/focus.nvim', config = function() require("focus").setup() end, enabled = not vscode},
---  'szw/vim-maximizer',
   'lambdalisue/suda.vim',
   'Shougo/vimproc.vim',
   'hashivim/vim-terraform',
@@ -179,7 +184,7 @@ require("lazy").setup({
     build = "make",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
+      "folke/snacks.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
@@ -255,8 +260,6 @@ require("lazy").setup({
   'tpope/vim-dadbod',
   'kristijanhusak/vim-dadbod-ui',
   'kristijanhusak/vim-dadbod-completion',
-  'chipsenkbeil/distant.nvim',
---  'ms-jpq/coq_nvim',
   'mfussenegger/nvim-dap-python',
   'mfussenegger/nvim-jdtls',
   'nvim-telescope/telescope-media-files.nvim',

@@ -5,6 +5,7 @@ require('avante').setup({
   provider = "copilot",
   mode = "agentic",
   auto_suggestions_provider = "copilot",
+  input_provider = "snacks",  -- Use snacks.nvim for password inputs
   providers ={
     copilot = {
       endpoint = "https://api.githubcopilot.com",

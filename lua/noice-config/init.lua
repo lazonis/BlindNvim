@@ -1,7 +1,3 @@
-require("notify").setup({
-  background_colour = "#000000",
-})
-
 local blind = {
   cmdline = {
     view = "cmdline",
@@ -12,7 +8,7 @@ local blind = {
     },
   },
 }
-local default ={
+local default = {
   cmdline = {
     enabled = true, -- enables the Noice cmdline UI
     view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
@@ -29,7 +25,7 @@ local default ={
       filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
       lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
       help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-      input = {}, -- Used by input()
+      -- input = {}, -- Used by input()
       -- lua = false, -- to disable a format, set to `false`
     },
   },
@@ -195,18 +191,17 @@ local default ={
 
   routes = {
     {
-        filter = {
-          event = "msg_show",
-          kind = "",
-          find = "written",
-        },
-        opts = { skip = true },
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "written",
       },
-  views = {}, ---@see section on views
-
+      opts = { skip = true },
+    },
   },
+  views = {}, ---@see section on views
   status = {}, 
   format = {}, 
 }
-require("noice").setup(default)
-print(BlindReturn(blind, default))
+require("noice").setup(BlindReturn(blind, default))
+

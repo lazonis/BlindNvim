@@ -32,7 +32,6 @@ require('orphans-config')
 require('puppeteer-config')
 require('bloat-config')
 require('splitjoin-config')
-require('kube-config')
 vim.cmd[[colorscheme tokyonight-night]]
 end
 require('dial-config')

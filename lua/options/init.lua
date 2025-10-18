@@ -1,4 +1,4 @@
-vim.g.visual_impairing = ( os.getenv("BLIND") ~= nil )
+vim.g.visual_impairing = require "check_braile".has_braille_device()
 function BlindReturn(if_true, if_false)
   if vim.g.visual_impairing then return if_true else return if_false end
 end

@@ -2,7 +2,7 @@ require('options')
 require('keybindings')
 require('plugins')
 if not vim.g.vscode then
---require('avante-config')  -- Cargar avante temprano para que snacks esté disponible
+require('avante-config')  -- Cargar avante temprano para que snacks esté disponible
 require('blankline-config')
 require('lsp')
 require('lualine-config')

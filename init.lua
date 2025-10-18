@@ -29,8 +29,6 @@ require('aerial')
 require('avante-config')
 require('mcphub-config')
 require('orphans-config')
-require('puppeteer-config')
-require('bloat-config')
 require('splitjoin-config')
 vim.cmd[[colorscheme tokyonight-night]]
 end

@@ -42,7 +42,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
   textobjects = {
-     move = {
+    move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
@@ -65,10 +65,10 @@ require'nvim-treesitter.configs'.setup {
     swap = {
       enable = true,
       swap_next = {
-        ['<leader>a'] = '@parameter.inner',
+        ['<leader>sp'] = '@parameter.inner',  -- Changed from <leader>a to avoid Avante conflict
       },
       swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
+        ['<leader>sP'] = '@parameter.inner',  -- Changed from <leader>A to avoid Avante conflict
       },
     select = {
       enable = true,
@@ -78,7 +78,7 @@ require'nvim-treesitter.configs'.setup {
 
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-       ['aa'] = '@parameter.outer',
+        ['aa'] = '@parameter.outer',
         ['ia'] = '@parameter.inner',
         ['af'] = '@function.outer',
         ['if'] = '@function.inner',

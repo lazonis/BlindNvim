@@ -58,8 +58,9 @@ require("oil").setup({
   -- Set to `false` to remove a keymap
   -- See :help oil-actions for a list of all available actions
   keymaps = {
-    ["g?"] = "actions.show_help",
-    ["<CR>"] = "actions.select",
+  ["g?"] = "actions.show_help",
+  ["<CR>"] = "actions.select",
+  ["<2-LeftMouse>"] = "actions.select",
     ["<C-s>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
     ["<C-h>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
     ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },

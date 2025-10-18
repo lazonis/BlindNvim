@@ -312,6 +312,6 @@ require("lazy").setup({
   {'stevearc/conform.nvim', config = function() require('conform').setup() end },
   {'folke/todo-comments.nvim', dependencies = { "nvim-lua/plenary.nvim" }, config = function() require('todo-comments').setup() end },
   {'folke/flash.nvim', event = "VeryLazy", opts = {} },
-  {'nvim-pack/nvim-spectre', dependencies = { "nvim-lua/plenary.nvim" } },
+  {'nvim-pack/nvim-spectre', dependencies = { "nvim-lua/plenary.nvim" }, config = function() require('spectre').setup() end },
 })
 

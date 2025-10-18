@@ -306,6 +306,12 @@ require("lazy").setup({
   {'chrisgrieser/nvim-puppeteer', config = function() require('puppeteer-config') end, enabled = not vscode },
   {'dundalek/bloat.nvim', config = function() require('bloat-config') end, enabled = not vscode },
   {'bennypowers/splitjoin.nvim', config = function() require('splitjoin-config') end, enabled = not vscode },
-  {'kezhenxu94/kube.nvim', config = function() require('kube-config') end, enabled = not vscode },
+  -- New plugins
+  {'Ramilito/kubectl.nvim', config = function() require('kubectl').setup() end, enabled = not vscode },
+  {'cshuaimin/ssr.nvim', config = function() require('ssr').setup() end },
+  {'stevearc/conform.nvim', config = function() require('conform').setup() end },
+  {'folke/todo-comments.nvim', dependencies = { "nvim-lua/plenary.nvim" }, config = function() require('todo-comments').setup() end },
+  {'folke/flash.nvim', event = "VeryLazy", opts = {} },
+  {'nvim-pack/nvim-spectre', dependencies = { "nvim-lua/plenary.nvim" }, config = function() require('spectre').setup() end },
 })
 

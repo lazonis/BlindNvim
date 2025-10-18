@@ -301,5 +301,11 @@ require("lazy").setup({
   { 'kevinhwang91/nvim-bqf' },
   { 'junegunn/fzf', build = function() vim.fn['fzf#install']() end },
   {'danymat/neogen', config = function() require('neogen').setup {} end, disable = vscode },
+  -- Additional plugins
+  {'ZWindL/orphans.nvim', config = function() require('orphans-config') end, enabled = not vscode },
+  {'chrisgrieser/nvim-puppeteer', config = function() require('puppeteer-config') end, enabled = not vscode },
+  {'dundalek/bloat.nvim', config = function() require('bloat-config') end, enabled = not vscode },
+  {'bennypowers/splitjoin.nvim', config = function() require('splitjoin-config') end, enabled = not vscode },
+  {'kezhenxu94/kube.nvim', config = function() require('kube-config') end, enabled = not vscode },
 })
 

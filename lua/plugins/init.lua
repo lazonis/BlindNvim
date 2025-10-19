@@ -16,6 +16,7 @@ require("lazy").setup({
   'wbthomason/packer.nvim',
   'ibhagwan/smartyank.nvim',
   'pteroctopus/faster.nvim',
+  'gpanders/editorconfig.nvim',
   'mg979/vim-visual-multi',
   'Civitasv/cmake-tools.nvim',
   'debugloop/telescope-undo.nvim',
@@ -155,6 +156,22 @@ require("lazy").setup({
     },
 },
   'kdheepak/lazygit.nvim',
+  {
+    'SuperBo/fugit2.nvim',
+    opts = {},
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'nvim-lua/plenary.nvim',
+      {
+        'chrisgrieser/nvim-tinygit', -- optional: for Github PR view
+        dependencies = { 'stevearc/dressing.nvim' }
+      },
+    },
+    cmd = { 'Fugit2', 'Fugit2Diff', 'Fugit2Graph' },
+    keys = {
+      { '<leader>F', mode = 'n', '<cmd>Fugit2<cr>' }
+    }
+  },
   'echasnovski/mini.nvim',
   {'lukas-reineke/indent-blankline.nvim', main = "ibl"},
   {'akinsho/toggleterm.nvim', branch = 'main', config = function() require('toggleterm-config') end, enabled = not vscode },

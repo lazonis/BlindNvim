@@ -1,5 +1,6 @@
+local has_braille = require("check-braille").has_braille_device()
 function BlindReturn(if_true, if_false)
-  if require "check_braile".has_braille_device() then return if_true else return if_false end
+  if has_braille then return if_true else return if_false end
 end
 -- [[ Setting options ]]
 -- See `:help vim.o`

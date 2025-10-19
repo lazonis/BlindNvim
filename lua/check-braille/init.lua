@@ -12,6 +12,7 @@ end
 local function has_braille_device()
   local found = false
   local details = {}
+  
 
   -- 1️⃣ Buscar en lsusb
   local lsusb = run_command("lsusb")
@@ -22,18 +23,16 @@ local function has_braille_device()
     end
   end
 
-  -- 2️⃣ Buscar en bluetoothctl
-  local bt = run_command("bluetoothctl devices")
-  for line in bt:gmatch("[^\r\n]+") do
-    if line:lower():match("braille") then
-      found = true
-      table.insert(details, "Bluetooth: " .. line)
-    end
+  -- 2️⃣ Buscar en dmesg
+  local dmesg = run_command("dmesg | grep -i braille")
+  for line in dmesg:gmatch("[^\r\n]+") do
+    found = true
+    table.insert(details, "dmesg: " .. line)
   end
-
-  -- 3️⃣ Ver si BRLTTY está activo
+  
+  -- 3️⃣ Verificar estado de brltty
   local brltty_status = run_command("systemctl is-active brltty 2>/dev/null")
-  if brltty_status:match("active") then
+  if brltty_status:match("^active") then
     found = true
     table.insert(details, "BRLTTY activo")
   end
@@ -57,3 +56,9 @@ local function has_braille_device()
     return false
   end
 end
+
+-- Export module table so callers can use the function when requiring this file
+local M = {}
+M.has_braille_device = has_braille_device
+
+return M

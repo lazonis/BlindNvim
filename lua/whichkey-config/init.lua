@@ -190,7 +190,7 @@ wk.add({
   { "<space>lFR", '<cmd>Lspsaga rename<cr>', desc = "Rename" },
   { "<space>lR", '<cmd>lua vim.lsp.buf.references()<cr>', desc = "References" },
   { "<space>le", '<cmd>Lspsaga show_line_diagnostics<cr>', desc = "Show Line Diagnostics" },
-  { "<space>lE", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', desc = "Show line diagnostics" },
+  { "<space>lE", '<cmd>lua vim.diagnostic.open_float()<CR>', desc = "Show line diagnostics" },
   { "<space>ln", '<cmd>Lspsaga diagnostic_jump_next<cr>', desc = "Go To Next Diagnostic" },
   { "<space>lN", '<cmd>Lspsaga diagnostic_jump_prev<cr>', desc = "Go To Previous Diagnostic" },
   { "<space>lv", "<cmd>lua require('lsp_lines').toggle()<cr>", desc = "Virtual Lines Info Toggle" },

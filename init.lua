@@ -28,9 +28,9 @@ require('render-markdown-config')
 require('aerial')
 require('mcphub-config')
 require('orphans-config')
-require('splitjoin-config')
+--require('splitjoin-config')
 require('copilot-config')
-vim.cmd[[colorscheme tokyonight-night]]
+
 end
 require('dial-config')
 require('leap-config')

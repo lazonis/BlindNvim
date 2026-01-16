@@ -1,7 +1,15 @@
 -- Avante.nvim configuration
 -- AI coding assistant for Neovim with GitHub Copilot integration
+local status_ok, avante = pcall(require, "avante") 
+-- ^^^ 'pcall' significa "Protected Call" (Llamada Protegida).
+-- Intenta hacer el require. Si falla, 'status_ok' será false.
 
-require('avante').setup({
+if not status_ok then
+  return -- Si falló, cancelamos la carga de este archivo y NO hacemos nada más.
+end
+
+
+avante.setup({
   provider = "copilot",
   mode = "agentic",
   auto_suggestions_provider = "copilot",

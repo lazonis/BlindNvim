@@ -33,6 +33,10 @@ require("lazy").setup({
   -- Optional dependencies
   dependencies = {
      "nvim-treesitter/nvim-treesitter",
+     build= ":TSUpdate",
+     config = function()
+        require('treesitter-config')
+    end
      --"nvim-tree/nvim-web-devicons"
   },
 },
@@ -178,8 +182,7 @@ require("lazy").setup({
   'scalameta/nvim-metals',
   'sudormrfbin/cheatsheet.nvim',
   'romgrk/nvim-treesitter-context',
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  'RRethy/nvim-treesitter-textsubjects',
+  --'nvim-treesitter/nvim-treesitter-textobjects',
   {
   "zbirenbaum/copilot.lua",
   requires = {
@@ -273,7 +276,7 @@ require("lazy").setup({
   {'ZWindL/orphans.nvim', config = function() require('orphans-config') end, enabled = not vscode },
   {'chrisgrieser/nvim-puppeteer', enabled = not vscode },
   {'dundalek/bloat.nvim', cmd = bloat, enabled = not vscode },
-  {'bennypowers/splitjoin.nvim', config = function() require('splitjoin-config') end, enabled = not vscode },
+
   -- New plugins
   {'Ramilito/kubectl.nvim', config = function() require('kubectl').setup() end, enabled = not vscode },
   {'cshuaimin/ssr.nvim', config = function() require('ssr').setup() end },

@@ -1,3 +1,7 @@
+-- lua/treesitter-config/init.lua
+
+-- Mover la configuración de diagnósticos LSP a su propio sitio sería ideal, 
+-- pero la mantenemos aquí protegida para no romper tu flujo actual.
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
@@ -9,12 +13,33 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
         update_in_insert = true,
     }
 )
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"html", "javascript", "lua", "java", "python", 'c', 'cpp', 'rust' },
+
+-- 1. PROTECCIÓN CONTRA FALLOS (Vital para arreglar tu error)
+-- Intentamos cargar el módulo. Si falla (porque no está instalado), paramos suavemente.
+local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not status_ok then
+  return
+end
+
+-- 2. CONFIGURACIÓN SANEADA
+configs.setup({
+  -- Lista de lenguajes a instalar
+  ensure_installed = { 
+    "html", "javascript", "lua", "java", "python", "c", "cpp", "rust", 
+    "vim", "vimdoc", "query", "markdown", "markdown_inline" 
+  },
+  
   sync_install = false,
   auto_install = true,
 
+  -- Indentación y Resaltado (Lo más importante)
   indent = { enable = true },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+
+  -- Selección incremental
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -24,27 +49,29 @@ require'nvim-treesitter.configs'.setup {
       node_decremental = '<c-backspace>',
     },
   },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  autotag = {
-    enable = true,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
-  },
-  autopairs = {
-    enable = true
-  },
+
+  -- Integraciones con otros plugins (Solo si los tienes instalados)
+  autotag = { enable = true },
+  autopairs = { enable = true },
+
+  -- Textobjects: Mantenemos esto básico. Si borraste el plugin 'nvim-treesitter-textobjects',
+  -- deberías borrar este bloque también, pero dejarlo aquí no suele romper el arranque si el padre carga bien.
   textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['aa'] = '@parameter.outer',
+        ['ia'] = '@parameter.inner',
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      },
+    },
     move = {
       enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
+      set_jumps = true,
       goto_next_start = {
         [']m'] = '@function.outer',
         [']]'] = '@class.outer',
@@ -62,41 +89,6 @@ require'nvim-treesitter.configs'.setup {
         ['[]'] = '@class.outer',
       },
     },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>sp'] = '@parameter.inner',  -- Changed from <leader>a to avoid Avante conflict
-      },
-      swap_previous = {
-        ['<leader>sP'] = '@parameter.inner',  -- Changed from <leader>A to avoid Avante conflict
-      },
-    select = {
-      enable = true,
-      -- to use this feature you must be in visual mode
-      -- Automatically jump forward to textobj, similar to targets.vim
-      lookahead = true,
-
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['aa'] = '@parameter.outer',
-        ['ia'] = '@parameter.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
-      -- You can choose the select mode (default is charwise 'v')
-      selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
-      },
-      -- If you set this to `true` (default is `false`) then any textobject is
-      -- extended to include preceding xor succeeding whitespace. Succeeding
-      -- whitespace has priority in order to act similarly to eg the built-in
-      -- `ap`.
-      include_surrounding_whitespace = true,
-    },
   },
-},
-}
+  
+})

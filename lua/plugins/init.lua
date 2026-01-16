@@ -33,7 +33,7 @@ require("lazy").setup({
   -- Optional dependencies
   dependencies = {
      "nvim-treesitter/nvim-treesitter",
-     "nvim-tree/nvim-web-devicons"
+     --"nvim-tree/nvim-web-devicons"
   },
 },
   {'stevearc/aerial.nvim',opts = {},},
@@ -66,11 +66,11 @@ require("lazy").setup({
   {'VonHeikemen/lsp-zero.nvim'},
   {'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim'},
   {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require("treesitter-config") end, enabled = not vscode},
-  {'tamton-aquib/staline.nvim', dependencies = {'kyazdani42/nvim-web-devicons',lazy = true} },
+  --{'tamton-aquib/staline.nvim', dependencies = {'kyazdani42/nvim-web-devicons',lazy = true} },
   {"LinArcX/telescope-command-palette.nvim" },
   {'nat-418/telescope-color-names.nvim', config = function() require('telescope').load_extension('color_names') end, enabled = not vscode},
   {"neanias/telescope-lines.nvim", dependencies = "nvim-telescope/telescope.nvim",},
-  {'akinsho/bufferline.nvim',version="*", dependencies = 'kyazdani42/nvim-web-devicons'},
+  --{'akinsho/bufferline.nvim',version="*", dependencies = 'kyazdani42/nvim-web-devicons'},
   -- {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' },
   {'windwp/nvim-ts-autotag', event = "InsertEnter", after = "nvim-treesitter" },
   {'windwp/nvim-autopairs', config = true, event="InsertEnter", after = "nvim-cmp", enabled = not vscode},
@@ -132,7 +132,7 @@ require("lazy").setup({
   },
   
   {"epwalsh/obsidian.nvim", version = "*",  lazy = true, ft = "markdown",dependencies = {"nvim-lua/plenary.nvim"},},
-  {"MeanderingProgrammer/render-markdown.nvim", dependencies = {"nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons"}, ft = "markdown"},
+  --{"MeanderingProgrammer/render-markdown.nvim", dependencies = {"nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons"}, ft = "markdown"},
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-vsnip',
   'hrsh7th/vim-vsnip',
@@ -159,7 +159,7 @@ require("lazy").setup({
   {
     'SuperBo/fugit2.nvim',
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      --'nvim-tree/nvim-web-devicons',
       'nvim-lua/plenary.nvim',
       {
         'chrisgrieser/nvim-tinygit', -- optional: for Github PR view
@@ -185,8 +185,8 @@ require("lazy").setup({
   'hashivim/vim-terraform',
   'nvim-lua/popup.nvim',
   'nvim-lua/plenary.nvim',
-  'nvim-treesitter/playground',
-  'kyazdani42/nvim-web-devicons',
+  --'nvim-treesitter/playground',
+  --'kyazdani42/nvim-web-devicons',
   'scalameta/nvim-metals',
   'sudormrfbin/cheatsheet.nvim',
   'romgrk/nvim-treesitter-context',
@@ -321,7 +321,7 @@ require("lazy").setup({
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "stevearc/dressing.nvim", -- for input provider dressing
     "folke/snacks.nvim", -- for input provider snacks
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    --"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- support for image pasting

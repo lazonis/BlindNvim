@@ -77,18 +77,6 @@ require("lazy").setup({
   {'folke/which-key.nvim', event = "BufWinEnter", config = function() require('whichkey-config') end, enabled = not vscode },
   'nvim-telescope/telescope.nvim',
   'LinArcX/telescope-env.nvim',
-  {
-  --"kndndrj/nvim-dbee",
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-  },
-  build = function()
-    require("dbee").install()
-  end,
-  config = function()
-    require("dbee").setup(--[[optional config]])
-  end,
-},
   'williamboman/mason-lspconfig.nvim',
   { 'neovim/nvim-lspconfig', requires = {'williamboman/mason.nvim','williamboman/mason-lspconfig.nvim','j-hui/fidget.nvim', }, },
   --{"MattiasMTS/cmp-dbee",dependencies = {{"kndndrj/nvim-dbee"}},ft = "sql", opts = {}, },

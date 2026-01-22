@@ -65,7 +65,7 @@ require("lazy").setup({
   'jayp0521/mason-nvim-dap.nvim',
   {'VonHeikemen/lsp-zero.nvim'},
   {'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim'},
-  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', config = function() require("treesitter-config") end, enabled = not vscode},
+  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', lazy = false, enabled = not vscode},
   {'tamton-aquib/staline.nvim', dependencies = {'kyazdani42/nvim-web-devicons',lazy = true} },
   {"LinArcX/telescope-command-palette.nvim" },
   {'nat-418/telescope-color-names.nvim', config = function() require('telescope').load_extension('color_names') end, enabled = not vscode},
@@ -185,13 +185,27 @@ require("lazy").setup({
   'hashivim/vim-terraform',
   'nvim-lua/popup.nvim',
   'nvim-lua/plenary.nvim',
-  'nvim-treesitter/playground',
   'kyazdani42/nvim-web-devicons',
   'scalameta/nvim-metals',
   'sudormrfbin/cheatsheet.nvim',
-  'romgrk/nvim-treesitter-context',
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  'RRethy/nvim-treesitter-textsubjects',
+  {
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  branch = "main",
+  init = function()
+    -- Disable entire built-in ftplugin mappings to avoid conflicts.
+    -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+    vim.g.no_plugin_maps = true
+
+    -- Or, disable per filetype (add as you like)
+    -- vim.g.no_python_maps = true
+    -- vim.g.no_ruby_maps = true
+    -- vim.g.no_rust_maps = true
+    -- vim.g.no_go_maps = true
+  end,
+  config = function()
+    -- put your config here
+  end,
+  },
   {
   "zbirenbaum/copilot.lua",
   requires = {

@@ -245,7 +245,6 @@ require("lazy").setup({
   'rcarriga/cmp-dap',
   'theHamsta/nvim-dap-virtual-text',
   'nvim-telescope/telescope-dap.nvim',
-  'ravenxrz/DAPInstall.nvim',
   'mbbill/undotree',
   'voldikss/vim-translator',
   'tpope/vim-dadbod',

@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 --LÓGICA DE ACCESIBILIDAD--
+=======
+
+
+-- Function to return different values based on the presence of a braille device
+
+>>>>>>> ab691aa0bfc9a22d56d9018772d57de4bc8b9aca
 local has_braille = require("check-braille").has_braille_device()
 function BlindReturn(if_true, if_false)
   if has_braille then return if_true else return if_false end
 end
+<<<<<<< HEAD
 -- [[ Setting options ]]
 -- LÓGICA INTERFAZ Y COMPORTAMIENTO
 vim.opt.completeopt = { "menu", "menuone", "noselect", "preview" }
@@ -86,6 +94,27 @@ vim.wo.signcolumn = "yes"
 
 -- Configuración del tabulador
 -- Vim.bo -> api que configura opciones de ámbito de búfer y de ventana
+=======
+
+-- Key for general shortcuts
+
+vim.g.mapleader = "º"
+vim.g.maplocalleader = "º"
+
+-- Enable filetype detection and plugins
+vim.cmd('filetype plugin indent on')
+
+-- Mouse and clipboard settings
+
+vim.o.mouse = "a"
+vim.o.clipboard = "unnamedplus"
+vim.o.fileencoding = 'utf-8'
+
+-- Tab and indetation settings
+
+vim.o.expandtab = true
+vim.bo.expandtab = true
+>>>>>>> ab691aa0bfc9a22d56d9018772d57de4bc8b9aca
 vim.o.tabstop = 2
 vim.bo.tabstop = 2
 vim.o.softtabstop = 2
@@ -95,15 +124,22 @@ vim.bo.shiftwidth = 2
 -- Al hacer enter la nueva línea mantiene la indentación de la anterior
 vim.o.autoindent = true
 vim.bo.autoindent = true
+<<<<<<< HEAD
 
 --Convierte los tabs en espacios reales (evitar errores de formato)
 vim.o.expandtab = true
 vim.bo.expandtab = true
 
+=======
+vim.o.breakindent = true
+
+-- Color and visual settings
+>>>>>>> ab691aa0bfc9a22d56d9018772d57de4bc8b9aca
 
 vim.opt.termguicolors = true
 --Usa colores para fondos oscuros
 vim.o.background = 'dark'
+<<<<<<< HEAD
 -- Establece para el archivo activo el nivel 2 -> escnder los caracteres de formato
 vim.opt_local.conceallevel = 2
 
@@ -113,12 +149,100 @@ vim.opt_local.conceallevel = 2
 vim.diagnostic.config({ virtual_lines = false })
 
 
+=======
+vim.o.cursorline = true
+vim.o.conceallevel = 0
+vim.opt_local.conceallevel = 2
+
+-- Line numbers settings
+
+vim.wo.number = true
+vim.o.relativenumber= true
+
+-- Scroll margins settings
+
+vim.o.scrolloff = 3
+vim.o.sidescrolloff = 5
+
+-- Sings column settings
+
+vim.wo.signcolumn = "yes"
+
+-- Line wrap settings
+
+vim.wo.wrap = BlindReturn(true, false)
+
+-- Window split settings
+
+vim.o.splitbelow = true
+vim.o.splitright = BlindReturn(false,true)
+
+-- Command line height settings
+
+vim.o.cmdheight = 0
+vim.o.ch = 0
+
+-- Tab line settings
+
+vim.o.showtabline = 2
+
+-- Messages and modes settings
+
+vim.o.showmode = false
+vim.opt.shortmess:append "c"
+
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.hlsearch = false
+
+-- Cursor movement settings when reaching line ends
+
+vim.o.whichwrap = 'b,s,<,>,[,],h,l'
+
+-- Suggestions and completions settings
+
+vim.opt.completeopt = { "menu", "menuone", "noselect", "preview" }
+vim.o.pumheight = 10
+
+-- File handling settings
+
+vim.o.hidden = true
+vim.o.undofile = true
+vim.o.backup = false
+vim.o.writebackup = false
+
+-- Times of refresh settings
+
+vim.o.updatetime = 300
+vim.o.timeoutlen = 100
+
+-- Diagnostic settings (LSP)
+
+vim.diagnostic.config({ virtual_lines = false })
+
+-- Theme settings
+>>>>>>> ab691aa0bfc9a22d56d9018772d57de4bc8b9aca
 -- vim.cmd[[colorscheme tokyonight]]
 -- vim.g.tokyonight_style = 'night'
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 
+<<<<<<< HEAD
 --Creación de grupo de auto-comandos -> Cuando ocurra esto -> haz esto
+=======
+
+-- Visual Multi settings (specific plugin setting)
+
+vim.g.VM_default_mappings = 0
+
+-- Autocomplete menu setting 
+
+vim.o.shortmess = vim.o.shortmess .. 'c'
+
+
+-- Feedback Visual: Higlihght what you copy (Yank Highlight)
+
+>>>>>>> ab691aa0bfc9a22d56d9018772d57de4bc8b9aca
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', { --Creas el evento específico
   callback = function()

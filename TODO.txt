@@ -1,0 +1,14 @@
+- Por qué tener dos plugins de buffer:
+    - ggandor/leap.nvim.
+    - folke/flash.nvim.
+
+- Selección de motores de IA:
+    - zbirenbaum/copilot.lua (+ copilot-cmp)
+    - yetone/avante.nvim
+    - robitx/gp.nvim -> hace lo mismo que AVANTE
+    - tzachar/cmp-tabnine -> hace lo mismo que copilot
+
+- Clientes de git: 
+    - kdheepak/lazygit.nvim: Terminal UI flotante.
+    - SuperBo/fugit2.nvim: Otra UI de Git. -> Es necesario teniendo LazyGit? 
+    - pwntester/octo.nvim: Específico para GitHub (PRs/Issues). -> IMPORTANTE gestión de PR

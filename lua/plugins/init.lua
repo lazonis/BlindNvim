@@ -59,7 +59,7 @@ require("lazy").setup({
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 },
-  "jay-babu/mason-null-ls.nvim",
+
   'mfussenegger/nvim-dap',
   'jayp0521/mason-nvim-dap.nvim',
   {'VonHeikemen/lsp-zero.nvim'},

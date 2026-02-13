@@ -221,15 +221,7 @@ require("lazy").setup({
       require("copilot_cmp").setup()
     end,
   },
-  {
-    'robitx/gp.nvim',
-    config = function()
-      require('mcphub-config')
-    end,
-  },
   'eandrju/cellular-automaton.nvim',
-  {'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp'},
---  { 'codota/tabnine-nvim', build = "./dl_binaries.sh", enabled = not vscode },
   'ray-x/cmp-treesitter',
   'ray-x/lsp_signature.nvim',
   'octaltree/cmp-look',

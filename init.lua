@@ -1,37 +1,81 @@
-require('options')
-require('keybindings')
-require('plugins')
-if not vim.g.vscode then
-require('avante-config')  -- Cargar avante temprano para que snacks esté disponible
-require('blankline-config')
-require('lsp')
-require('lualine-config')
-require('bufferline-config')
-require('telescope-config')
-require('octo-config')
-require('dap-config')
-require('live-preview-config')
-require('terminal-config')
-require('vscode-theme')
-require("gitsigns-config")
-require('oil-config')
-require('cmake-config')
-require('null-ls-config')
-require('trouble-config')
-require('urlview-config')
-require('mini-config')
-require('nvim-lint-config')
-require('devcontainer-config')
---require('noice-config')
-require('fasterbigfile-config')
-require('render-markdown-config')
-require('aerial')
-require('mcphub-config')
-require('orphans-config')
-require('copilot-config')
-vim.cmd[[colorscheme tokyonight-night]]
+-- Módulo `init.lua`: punto de entrada de BlindNvim y orden de carga global.
+-- Mapa mental rápido:
+-- 1) `core.*` prepara opciones base, keymaps y registro de plugins.
+-- 2) Se cargan módulos "seguros" para Neovim y VSCode.
+-- 3) El resto de integraciones solo se activa fuera de VSCode.
+if vim.env.PROF then
+  -- example for lazy.nvim
+  -- change this to the correct path for your plugin manager
+  local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
+  vim.opt.rtp:append(snacks)
+  require("snacks.profiler").startup({
+    startup = {
+      event = "VimEnter", -- stop profiler on this event. Defaults to `VimEnter`
+      -- event = "UIEnter",
+      -- event = "VeryLazy",
+    },
+  })
 end
-require('dial-config')
-require('leap-config')
-require('surround-config')
+-- Toggle global de Noice (por defecto: desactivado)
+vim.g.enable_noice = vim.g.enable_noice or false
 
+--REQUIRES
+--INITIAL LOAD
+require('core.options') -- Vim basic options
+require('core.keybindings') -- Global keybindings (TTS shoud be there configurated)
+require('core.plugins') -- Plugin manager bootstrap and plugin list (lazy.nvim)
+
+--This tools works in NeoVim and VSCode
+require('navigation.leap-config') -- Leap: jump quickly to visible targets for faster movement
+require('tools.dial-config') -- Dial: increment/decrement numbers, dates, and similar values
+require('tools.surround-config') -- nvim-surround: add/change/delete surrounding pairs like quotes/brackets/tags
+require('tools.splitjoin-whichkey') -- splitjoin: discoverable split/join actions for code structures
+
+-- Si se ejecuta dentro de VSCode (`vim.g.vscode`), evitamos módulos con UI pesada,
+-- LSP completo y utilidades que asumen runtime puro de Neovim.
+if not vim.g.vscode then
+    require('lsp') -- LSP configuration
+
+    require('navigation.oil-config') -- Oil: edit and navigate the filesystem as a buffer
+    require('navigation.trouble-config') -- Trouble: structured diagnostics/references/location list view
+    require('navigation.telescope-config') -- Telescope: fuzzy finder for files, symbols, grep, and pickers
+
+    require("git.gitsigns-config") -- Gitsigns: inline git hunks, blame, and change actions
+
+    require('debug.dap-config') -- nvim-dap stack: debug adapter protocol integration
+
+    require('tools.live-preview-config') -- Live preview: render markdown/html previews while editing
+    require('tools.terminal-config') -- Terminal helpers for shell workflows inside Neovim
+    require('tools.cmake-config') -- CMake tools integration for configure/build/run commands
+    require('tools.conform-config') -- Conform: unified formatting sources and format-on-save
+    require('tools.urlview-config') -- URL view/open utilities for links found in buffers
+    require('tools.mini-config') -- mini.nvim modules used across editing workflows
+    require('tools.nvim-lint-config') -- nvim-lint: asynchronous lint runners per filetype
+    require('tools.devcontainer-config') -- Devcontainer tooling integration inside Neovim
+    require('tools.orphans-config') -- Orphans: detect/find files not tracked by current project references
+    require('tools.fasterbigfile-config') -- Faster: optimize behavior when opening very large files
+
+    require('aerial') -- Aerial: outline/symbol tree for quick code structure navigation
+
+    require('ui.blankline-config') -- indent-blankline: visualize indentation guides
+    require('ui.lualine-config') -- lualine: statusline components and sections
+    require('ui.bufferline-config') -- bufferline: tab-like buffer list with diagnostics/icons
+    require('ui.render-markdown-config') -- render-markdown: enhanced markdown rendering in buffers
+    require('ui.dashboard-config') -- dashboard-nvim: startup screen with shortcuts and projects
+    require('ui.vscode-theme') -- vscode.nvim theme and highlight tuning
+
+    require('ai.copilot-config') -- GitHub Copilot suggestions and integrations
+    -- Avante needs a real UI session; headless startup should skip it to avoid loading interactive modules too early.
+    if #vim.api.nvim_list_uis() > 0 then
+        require('ai.avante-config')  -- Avante AI assistant integration (UI sessions only)
+    end
+    require('ai.mcphub-config') -- MCP/GP assistant integrations and AI command workflows
+   
+    -- Theme settings
+    -- vim.cmd[[colorscheme tokyonight]]
+    -- vim.g.tokyonight_style = 'night'
+
+    if vim.g.enable_noice then
+        require('ui.noice-config')
+    end
+end

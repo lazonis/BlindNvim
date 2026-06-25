@@ -1,9 +1,24 @@
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- Documentación: módulo `lua/lsp/diagnostic_signs.lua`.
+-- Propósito: define integración de LSP y autocompletado dentro de BlindNvim sin alterar lógica de ejecución.
+
+local signs = BlindReturn(
+  { Error = "E ", Warn = "W ", Hint = "H ", Info = "I " },
+  { Error = " ", Warn = " ", Hint = " ", Info = " " }
+)
 
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+vim.diagnostic.config({
+  underline = false,
+  virtual_text = {
+    spacing = 5,
+    severity = { min = vim.diagnostic.severity.WARN },
+  },
+  update_in_insert = BlindReturn(false, true),
+})
 
 
 local group = vim.api.nvim_create_augroup('OoO', {})
@@ -16,14 +31,16 @@ local function au(typ, pattern, cmdOrFn)
 	end
 end
 
-au({ 'CursorHold', 'InsertLeave' }, nil, function()
-	local opts = {
-		focusable = false,
-		scope = 'cursor',
-		close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-	}
-	vim.diagnostic.open_float(nil, opts)
-end)
+if not vim.g.visual_impairing then
+  au({ 'CursorHold', 'InsertLeave' }, nil, function()
+    local opts = {
+      focusable = false,
+      scope = 'cursor',
+      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+    }
+    vim.diagnostic.open_float(nil, opts)
+  end)
+end
 
 au('InsertEnter', nil, function()
 	vim.diagnostic.enable(false)
@@ -34,9 +51,3 @@ au('InsertLeave', nil, function()
 end)
 
 
--- vim.diagnostic.config({
---   virtual_text = true,
---   virtual_lines = { current_line = true },
---   underline = true,
---   update_in_insert = false
--- })
